@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Attendance & Performance Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #f4f6f9;
+        }
+
+        .login {
+            width: 350px;
+            margin: 100px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #bbb;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #dashboard {
+            display: none;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 25px auto;
+        }
+
+        .cards {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 200px;
+            box-shadow: 0 2px 8px #ddd;
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 14px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+
+        th {
+            background: #2563eb;
+            color: white;
+        }
+
+        .section {
+            margin-top: 30px;
+        }
+
+        .logout {
+            float: right;
+            background: #dc2626;
+        }
+
+        .logout:hover {
+            background: #b91c1c;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- LOGIN PAGE -->
+
+<div class="login" id="loginPage">
+
+    <h2>Student Login</h2>
+
+    <input type="text" id="username" placeholder="Enter Student Name">
+
+    <input type="password" id="password" placeholder="Enter Password">
+
+    <button onclick="login()">Login</button>
+
+    <p id="error" style="color:red;"></p>
+
+</div>
+
+
+<!-- DASHBOARD -->
+
+<div id="dashboard">
+
+    <header>
+
+        <button class="logout" onclick="logout()">Logout</button>
+
+        <h1>Student Attendance & Performance Dashboard</h1>
+
+        <p>Welcome, <span id="studentName"></span></p>
+
+    </header>
+
+
+    <div class="container">
+
+        <!-- SUMMARY -->
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Total Subjects</h3>
+                <h2>4</h2>
+            </div>
+
+            <div class="card">
+                <h3>Overall Attendance</h3>
+                <h2>88%</h2>
+            </div>
+
+            <div class="card">
+                <h3>Average Marks</h3>
+                <h2>85%</h2>
+            </div>
+
+            <div class="card">
+                <h3>Performance</h3>
+                <h2>Good</h2>
+            </div>
+
+        </div>
+
+
+        <!-- ATTENDANCE -->
+
+        <div class="section">
+
+            <h2>Attendance Details</h2>
+
+            <table>
+
+                <tr>
+                    <th>Subject</th>
+                    <th>Total Classes</th>
+                    <th>Present</th>
+                    <th>Attendance</th>
+                </tr>
+
+                <tr>
+                    <td>Java</td>
+                    <td>40</td>
+                    <td>38</td>
+                    <td>95%</td>
+                </tr>
+
+                <tr>
+                    <td>DBMS</td>
+                    <td>40</td>
+                    <td>34</td>
+                    <td>85%</td>
+                </tr>
+
+                <tr>
+                    <td>Software Engineering</td>
+                    <td>40</td>
+                    <td>36</td>
+                    <td>90%</td>
+                </tr>
+
+                <tr>
+                    <td>Mathematics</td>
+                    <td>40</td>
+                    <td>33</td>
+                    <td>82.5%</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+
+        <!-- MARKS -->
+
+        <div class="section">
+
+            <h2>Academic Performance</h2>
+
+            <table>
+
+                <tr>
+                    <th>Subject</th>
+                    <th>Internal Marks</th>
+                    <th>External Marks</th>
+                    <th>Total</th>
+                </tr>
+
+                <tr>
+                    <td>Java</td>
+                    <td>25</td>
+                    <td>65</td>
+                    <td>90</td>
+                </tr>
+
+                <tr>
+                    <td>DBMS</td>
+                    <td>23</td>
+                    <td>62</td>
+                    <td>85</td>
+                </tr>
+
+                <tr>
+                    <td>Software Engineering</td>
+                    <td>24</td>
+                    <td>67</td>
+                    <td>91</td>
+                </tr>
+
+                <tr>
+                    <td>Mathematics</td>
+                    <td>22</td>
+                    <td>60</td>
+                    <td>82</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+<!-- FACULTY ATTENDANCE -->
+
+<div class="section">
+
+    <h2>Faculty - Attendance Entry</h2>
+
+    <div class="card">
+
+        <input type="text" id="subject"
+               placeholder="Enter Subject">
+
+        <input type="number" id="totalClasses"
+               placeholder="Total Classes">
+
+        <input type="number" id="presentClasses"
+               placeholder="Present Classes">
+
+        <button onclick="addAttendance()">
+            Add Attendance
+        </button>
+
+        <p id="attendanceResult"></p>
+
+    </div>
+
+</div>
+<!-- FACULTY MARKS -->
+
+<div class="section">
+
+    <h2>Faculty - Marks Entry</h2>
+
+    <div class="card">
+
+        <input type="text" id="markSubject"
+               placeholder="Enter Subject">
+
+        <input type="number" id="internalMarks"
+               placeholder="Internal Marks">
+
+        <input type="number" id="externalMarks"
+               placeholder="External Marks">
+
+        <button onclick="addMarks()">
+            Add Marks
+        </button>
+
+        <p id="marksResult"></p>
+
+    </div>
+
+</div>
+        <!-- REPORT -->
+
+        <div class="section">
+
+            <h2>Performance Report</h2>
+
+            <div class="card">
+
+                <p><b>Overall Attendance:</b> 88%</p>
+
+                <p><b>Average Marks:</b> 85%</p>
+
+                <p><b>Academic Status:</b> Good</p>
+
+                <p><b>Recommendation:</b> Maintain regular attendance and continue improving academic performance.</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function login() {
+
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    if (username !== "" && password !== "") {
+
+        document.getElementById("loginPage").style.display = "none";
+
+        document.getElementById("dashboard").style.display = "block";
+
+        document.getElementById("studentName").innerText = username;
+
+    } else {
+
+        document.getElementById("error").innerText =
+        "Please enter username and password.";
+
+    }
+}
+
+function addAttendance() {
+
+    let subject = document.getElementById("subject").value;
+    let total = Number(document.getElementById("totalClasses").value);
+    let present = Number(document.getElementById("presentClasses").value);
+
+    if (subject === "" || total <= 0 || present < 0 || present > total) {
+        document.getElementById("attendanceResult").innerText =
+            "Please enter valid attendance details.";
+        return;
+    }
+
+    let percentage = (present / total) * 100;
+
+    document.getElementById("attendanceResult").innerText =
+        subject + " Attendance: " + percentage.toFixed(2) + "%";
+}
+function addMarks() {
+
+    let subject = document.getElementById("markSubject").value;
+
+    let internal = Number(
+        document.getElementById("internalMarks").value
+    );
+
+    let external = Number(
+        document.getElementById("externalMarks").value
+    );
+
+    if (subject === "" || internal < 0 || external < 0) {
+
+        document.getElementById("marksResult").innerText =
+            "Please enter valid marks.";
+
+        return;
+    }
+
+    let total = internal + external;
+
+    document.getElementById("marksResult").innerText =
+        subject + " Total Marks: " + total + "/100";
+}
+function logout() {
+
+    document.getElementById("dashboard").style.display = "none";
+
+    document.getElementById("loginPage").style.display = "block";
+
+    document.getElementById("username").value = "";
+
+    document.getElementById("password").value = "";
+
+}
+
+</script>
+<div class="section">
+    <h2>Quick Performance Summary</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Attendance</h3>
+            <h2>88%</h2>
+            <p>Good Attendance</p>
+        </div>
+
+        <div class="card">
+            <h3>Average Marks</h3>
+            <h2>85/100</h2>
+            <p>Good Performance</p>
+        </div>
+
+        <div class="card">
+            <h3>Best Subject</h3>
+            <h2>Java</h2>
+            <p>90/100</p>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
